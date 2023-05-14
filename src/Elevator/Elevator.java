@@ -11,21 +11,25 @@ public class Elevator {
         this.currentFloor = currentFloor;
     }
     public void move() {
+        System.out.println("----------------------------------");
         System.out.println("Вы находитесь на " + currentFloor+ " этаже.");
         System.out.print("Введите номер этажа, на который нужно отвезти (1-18): ");
         Scanner scanner1 = new Scanner(System.in);
         int toFloor = scanner1.nextInt();
+        System.out.println("----------------------------------");
         if (!isAllowableFloor(toFloor)) {
             System.out.println("Недопустимый номер этажа. Пожалуйста, повторите ввод.");
             return;
         }
         System.out.print("Введите вес груза: ");
         Scanner scanner2 = new Scanner(System.in);
-        int weight = scanner2.nextInt();
+        double weight = scanner2.nextDouble();
+        System.out.println("----------------------------------");
         if (isAllowableWeight(weight)) {
             System.out.println("Груз принят. Перемещаемся на указанный этаж...");
         }else {
             System.out.println("Превышен максимальный допустимый вес. Пожалуйста, повторите ввод.");
+            return;
         }
         System.out.println("Начинаем перемещение на этаж " + toFloor + "...");
         while (currentFloor != toFloor) {
@@ -41,7 +45,7 @@ public class Elevator {
     }
 
 
-    public boolean isAllowableWeight(int weight) {
+    public boolean isAllowableWeight(double weight) {
         return weight <= maxCapacity;
     }
     public boolean isAllowableFloor(int floor) {
